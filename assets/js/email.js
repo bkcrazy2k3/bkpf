@@ -1,4 +1,13 @@
-
+const toast=(text)=>{
+  Toastify({
+      text: text,
+      duration: 3000, // Duration in ms
+      close: true,    // Show close button
+      gravity: "top", // `top` or `bottom`
+      position: "right", // `left`, `center`, or `right`
+      backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
+  }).showToast();
+};
 emailjs.init("PDL5_D1Mts-eVA7E1");
 
 document.getElementById("contactForm").addEventListener("submit", function (event) {
@@ -16,10 +25,10 @@ document.getElementById("contactForm").addEventListener("submit", function (even
   emailjs
     .send("service_u0r0pcx", "template_krlh4sl", templateParams)
     .then(function (response) {
-      alert("Email sent successfully!");
+      toast("Email sent successfully!");
       document.getElementById("contactForm").reset(); // Clear the form after sending
     })
     .catch(function (error) {
-      alert("Failed to send email. Error: " + JSON.stringify(error));
+      toast("Failed to send email. Error: " + JSON.stringify(error));
     });
 });
